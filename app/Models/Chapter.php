@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChapterPart extends Model
+class Chapter extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'title',
+        'summary',
         'story',
-        'image_description',
-        'image_url',
-        'audio',
-        'order',
     ];
 
     public function book()
@@ -22,8 +20,12 @@ class ChapterPart extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function chapter()
+    public function chapterParts()
     {
-        return $this->belongsTo(Chapter::class);
+        return $this->hasMany(ChapterPart::class);
+    }
+
+    public function filamentResource() {
+        return \App\Filament\Resources\BookResource\RelationManagers\ChaptersRelationManager::class;
     }
 }

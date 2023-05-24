@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'midjourney' => [
+        'discord_channel_id' => env('DISCORD_CHANNEL_ID'),
+        'discord_user_token' => env('DISCORD_USER_TOKEN'),
+    ],
+
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+    ],
+
 ];

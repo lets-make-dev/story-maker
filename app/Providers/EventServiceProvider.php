@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Book;
+use App\Models\Chapter;
+use App\Models\ChapterPart;
+use App\Observers\BookObserver;
+use App\Observers\ChapterOberserver;
+use App\Observers\ChapterPartOberserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,13 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+    ];
+
+    protected $observers = [
+        Chapter::class => [ChapterOberserver::class],
+        ChapterPart::class => [ChapterPartOberserver::class],
+
+        Book::class => [BookObserver::class],
     ];
 
     /**

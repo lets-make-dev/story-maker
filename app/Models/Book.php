@@ -11,11 +11,26 @@ class Book extends Model
 
     protected $fillable = [
         'title',
-        'summary'
+        'cover_image',
+        'summary',
+        'image_style',
+        'spoken_audio_intro',
+        'spoken_audio_outro',
+        'audio_intro_file',
+        'audio_outro_file',
     ];
 
     public function chapters()
     {
-        return $this->hasMany(Chapters::class);
+        return $this->hasMany(Chapter::class);
+    }
+
+    public function chapterParts()
+    {
+        return $this->hasMany(ChapterPart::class);
+    }
+
+    public function filamentResource() {
+        return \App\Filament\Resources\BookResource::class;
     }
 }
